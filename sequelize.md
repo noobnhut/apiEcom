@@ -14,7 +14,7 @@ npx sequelize-cli model:generate --name Notification --attributes id_user:intege
 
 
 
-
+npx sequelize-cli db:migrate
 
 id_cat: {
         type: Sequelize.INTEGER,
