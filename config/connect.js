@@ -1,5 +1,5 @@
 const { Sequelize } =require("sequelize");
-const sequelize = new Sequelize("demo","root",null,{
+const sequelize = new Sequelize("ecom","root",null,{
   host:"localhost",
   dialect:"mysql",
   logging: false,
