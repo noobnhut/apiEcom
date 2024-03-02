@@ -16,7 +16,7 @@ npx sequelize-cli model:generate --name Cart_order --attributes id_product:integ
 
 
 
-
+npx sequelize-cli db:migrate
 
 id_cat: {
         type: Sequelize.INTEGER,
