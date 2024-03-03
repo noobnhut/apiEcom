@@ -5,6 +5,7 @@ const Img = db.Img_product;
 const OD = db.Cart_order;
 const fs = require("fs"); // package thao tác vs file
 const multer = require("multer"); // package sử dụng để thao tác upload file
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads/");
@@ -69,7 +70,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-const updatePost = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
     const { name_product, price, id_cat } = req.body;
     const exitsProduct = await Product.findOne({
@@ -89,7 +90,7 @@ const updatePost = async (req, res) => {
   }
 };
 
-const deletePost = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const exitsProduct = await Product.findByPk(id);
@@ -115,9 +116,64 @@ const deletePost = async (req, res) => {
     }
   } catch (error) {}
 };
+
+const addImg = async(req,res)=>
+{
+  try {
+     const id_product = req.params.id
+    const exitsProduct= await Product.findByPk(id_product)
+    if(!exitsProduct)
+    {
+      res.json({ success: false, message: "Không tồn tại sản phẩm" });
+    }else
+    {
+      upload.array("avatar", 10)(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(400).json({ message: err.message });
+        } else if (err) {
+            return res.status(400).json({ message: err.message });
+        }
+        // Kiểm tra nếu có file ảnh mới được chọn
+        if (req.files.length > 0) {
+            for (let i = 0; i < req.files.length; i++) {
+                const imageUrl = `${req.protocol}://${req.get('host')}/${req.files[i].filename}`;
+                const img = await Img.create({ url_img: imageUrl, name_img: req.files[i].filename, id_product: id_product });
+            }
+            res.json({ success: true, message: "Thành công" });
+
+        } else {
+          res.json({ success: false, message: "Thêm tối thiểu 1 ảnh" });
+        }
+    });
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteImg = async(req,res)=>
+{
+  try {
+    const id = req.params.id;
+    const existImg = await ImgHotel.findByPk(id);
+
+    if (!existImg) {
+      res.json({ success: false, message: "Không tồn tại ảnh" });
+    }
+    const imagePath = `./uploads/${existImg.name_img}`;
+    deleteFile(imagePath);
+    await existImg.destroy();
+    res.json({ success: true, message: "Xóa thành công" });
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getAll,
   createProduct,
-  updatePost,
-  deletePost,
+  updateProduct,
+  deleteProduct,
+  addImg,
+  deleteImg
 };

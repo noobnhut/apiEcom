@@ -12,10 +12,6 @@ npx sequelize-cli model:generate --name Img_product --attributes id_product:inte
 
 npx sequelize-cli model:generate --name Cart_order --attributes id_product:integer,id_order:integer,quantity:integer,single_price:double //
 
-
-
-
-
 npx sequelize-cli db:migrate
 
 id_cat: {
