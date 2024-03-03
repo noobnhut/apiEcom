@@ -87,16 +87,7 @@ const addCat = async (req, res) => {
           where: { id_cat: id },
         });
         if (product.length > 0) {
-          for (const item of product) {
-            // thực hiện xóa 
-            await Product.destroy({
-              where: {
-                id_cat: item.id_cat,
-              },
-            });
-          }
-          await existingCat.destroy()
-          res.json({ success: true, message: "Xóa thành công Cat." });
+          res.json({ success: false, message: "Cat này đang được sử dụng không thể xóa." });
         }
         else
         {
