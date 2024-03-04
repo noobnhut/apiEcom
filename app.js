@@ -15,6 +15,8 @@ const server = http.createServer(app);
 const { routerUser } = require('./routers/userRouter');
 const { routercat } = require('./routers/catRouter');
 const {routerProduct}=require('./routers/productRouter')
+const {routerNoti}=require('./routers/notiRouter')
+
 // // Định tuyến
 
 // Thiết lập body-parser
@@ -26,7 +28,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use(routerUser,routercat,routerProduct);
+app.use(routerUser,routercat,routerProduct,routerNoti);
 
 // Serve các tệp tĩnh trong thư mục "uploads"
 app.use(express.static("uploads"));

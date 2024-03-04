@@ -74,7 +74,10 @@ const updateProduct = async (req, res) => {
   try {
     const { name_product, price, id_cat } = req.body;
     const exitsProduct = await Product.findOne({
-      where: { name_product: name_product },
+      where: { name_product: name_product ,
+        id: {
+          [Op.not]: id, 
+        },},
     });
     if (exitsProduct) {
       res.json({ success: false, message: "Tồn tại tên sản phẩm." });
@@ -155,7 +158,7 @@ const deleteImg = async(req,res)=>
 {
   try {
     const id = req.params.id;
-    const existImg = await ImgHotel.findByPk(id);
+    const existImg = await Img.findByPk(id);
 
     if (!existImg) {
       res.json({ success: false, message: "Không tồn tại ảnh" });
