@@ -11,7 +11,7 @@ const getCat = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  };
+};
 
 const addCat = async (req, res) => {
     try {
@@ -38,7 +38,7 @@ const addCat = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  };
+};
 
   const updateCat = async (req, res) => {
     try {
@@ -74,7 +74,7 @@ const addCat = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  };
+};
 
   const deleteCat = async (req, res) => {
     try {
@@ -98,7 +98,7 @@ const addCat = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  };
+};
 
   module.exports = {
     getCat,
