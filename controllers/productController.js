@@ -5,6 +5,8 @@ const Img = db.Img_product;
 const OD = db.Cart_order;
 const fs = require("fs"); // package thao tác vs file
 const multer = require("multer"); // package sử dụng để thao tác upload file
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -73,6 +75,7 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { name_product, price, id_cat } = req.body;
+    const id = req.params.id
     const exitsProduct = await Product.findOne({
       where: { name_product: name_product ,
         id: {
