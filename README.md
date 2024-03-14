@@ -8,3 +8,5 @@ https://dbdiagram.io/d/ecom-65e2736dcd45b569fb554fbe
 ## Order: thêm - sửa - xóa ( COD - VNPAY ) => ĐẠT + Nhựt
 => API + REALTIME NOTI
 
+# npm i swagger-ui-express swagger-jsdoc
+
