@@ -10,3 +10,4 @@ https://dbdiagram.io/d/ecom-65e2736dcd45b569fb554fbe
 
 # npm i swagger-ui-express swagger-jsdoc
 
+-> https://blog.logrocket.com/documenting-express-js-api-swagger/

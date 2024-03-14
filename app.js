@@ -5,7 +5,31 @@ const cors = require("cors");
 require('./config/connect');
 const http = require('http');
 const server = http.createServer(app);
+// import swagger 
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
+const options = {
+  definition: {
+    openapi: "3.1.0",
+    info: {
+      title: "Swagger",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./routers/*.js"],
+};
+
+const specs = swaggerJsdoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 // app.use((req, res, next) => {
 //   res.io = io
 //   next()
